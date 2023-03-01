@@ -1,14 +1,5 @@
 <script lang="ts">
   let input: any;
-  let url: string;
-
-  const handleSubmit = async () => {
-    if (url.length == 0 || !url.includes('.')) {
-      return alert('Please enter a valid URL.');
-    }
-
-    const res = await fetch(`/api/create?url=${encodeURI(url)}`);
-  };
 </script>
 
 <main
@@ -20,8 +11,8 @@
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <form
     class="flex items-center w-5/12 gap-4 p-4 bg-white rounded-md shadow-md"
+    method="post"
     on:click={input.focus()}
-    on:submit|preventDefault={handleSubmit}
   >
     <label
       for="url"
@@ -32,7 +23,6 @@
     <!-- svelte-ignore a11y-autofocus -->
     <input
       bind:this={input}
-      bind:value={url}
       type="text"
       name="url"
       class="w-full h-full text-sm bg-transparent outline-0 placeholder:text-neutral-400"
